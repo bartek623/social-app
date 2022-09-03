@@ -1,0 +1,49 @@
+.main-header {
+  position: relative;
+  z-index: 9999;
+  width: 100%;
+  padding: 1.2rem 3.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.main-header a,
+.main-header a:visited {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.logout-btn {
+  background-color: inherit;
+  border-radius: 100rem;
+  padding: 1.2rem 2.4rem;
+  transition: all 0.15s;
+}
+.light .logout-btn {
+  border: 1px solid #333;
+}
+
+.dark .logout-btn {
+  border: 1px solid #eee;
+}
+
+.logout-btn:hover {
+  border: 1px solid #777;
+  cursor: pointer;
+}
+
+.light,
+.light * {
+  background-color: #eee;
+  color: #333;
+}
+
+.dark,
+.dark * {
+  background-color: #222;
+  color: #ddd;
+}

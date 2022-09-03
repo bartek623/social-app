@@ -1,9 +1,15 @@
+import Header from "../components/Homepage/Header";
+import Main from "../components/Homepage/Main";
+import Layout from "../components/UI/Layout";
 import GuestGuard from "../guards/GuestGuard";
 
 function HomePage() {
   return (
     <GuestGuard>
-      <div>HomePage</div>
+      <Layout>
+        <Header />
+        <Main />
+      </Layout>
     </GuestGuard>
   );
 }

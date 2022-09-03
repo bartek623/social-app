@@ -1,0 +1,15 @@
+.container {
+  flex: 1;
+
+  overflow: auto;
+}
+
+.dark {
+  background-color: #222;
+  color: #ddd;
+}
+
+.light {
+  background-color: #eee;
+  color: #333;
+}
