@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const uiSlice = createSlice({
+const uiSlice = createSlice({
   name: "ui",
   initialState: {
     theme: "light",
@@ -11,5 +11,7 @@ export const uiSlice = createSlice({
     },
   },
 });
+
+export default uiSlice.reducer;
 
 export const uiActions = uiSlice.actions;

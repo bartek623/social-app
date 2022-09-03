@@ -1,8 +1,8 @@
-import { congigureStore } from "@reduxjs/toolkit";
-import { uiSlice } from "./ui-slice";
+import { configureStore } from "@reduxjs/toolkit";
+import uiSlice from "./ui-slice";
 
-const store = congigureStore({
-  reducers: {
+const store = configureStore({
+  reducer: {
     ui: uiSlice,
   },
 });
