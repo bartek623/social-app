@@ -1,14 +1,31 @@
+import { useSelector, useDispatch } from "react-redux";
 import useAuth from "../../hooks/useAuth";
+import useUser from "../../hooks/useUser";
 
 import LoadingSpinner from "../UI/LoadingSpinner";
 import AuthForm from "./AuthForm";
 import style from "./Authorization.module.css";
 
 function Authorization() {
-  const { isLoading, error, sendRequest: authentication } = useAuth();
+  const {
+    isLoading: isAuthLoading,
+    authError,
+    sendRequest: authentication,
+  } = useAuth();
+
+  const { setUser, getUser, isLoading: isUserLoading, userError } = useUser();
+
+  const isLoading = isAuthLoading || isUserLoading;
+  const error = authError || userError || "";
 
   const submitHandler = function (login, email, username, password) {
     authentication(login, email, password);
+
+    if (error) return;
+
+    if (login) getUser(email);
+
+    if (!login) setUser(email, username);
   };
 
   let content = <AuthForm onSubmit={submitHandler} error={error} />;
