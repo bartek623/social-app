@@ -1,5 +1,11 @@
+import GuestGuard from "../guards/GuestGuard";
+
 function HomePage() {
-  return <div>HomePage</div>;
+  return (
+    <GuestGuard>
+      <div>HomePage</div>
+    </GuestGuard>
+  );
 }
 
 export default HomePage;

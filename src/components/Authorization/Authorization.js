@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
 

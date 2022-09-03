@@ -1,7 +1,12 @@
 import Authorization from "../components/Authorization/Authorization";
+import UserGuard from "../guards/UserGuard";
 
 function AuthPage() {
-  return <Authorization />;
+  return (
+    <UserGuard>
+      <Authorization />
+    </UserGuard>
+  );
 }
 
 export default AuthPage;

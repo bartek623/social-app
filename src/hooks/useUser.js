@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { userActions } from "../store/user-slice";
+
 function useUser() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [userData, setUserData] = useState({});
   const dispatch = useDispatch();
 
   const url =
@@ -20,6 +21,7 @@ function useUser() {
       const users = await resUsers.json();
 
       setIsLoading(false);
+
       if (!users) return [];
       return Object.values(users);
     } catch (error) {
@@ -31,10 +33,11 @@ function useUser() {
 
   const setUser = async function (email, username) {
     const users = await getUsersList();
-    console.log(users);
+
     // User ID as number of users already registered incremented by 1
     const userId = users.length + 1;
-    const userInfo = { UID: userId, username, email };
+    const userInfo = { uid: userId, username, email };
+
     try {
       setIsLoading(true);
       // Second fetch to set new user in DB
@@ -46,7 +49,8 @@ function useUser() {
 
       if (!res.ok) throw new Error("Error sending to database");
 
-      setUserData(userInfo);
+      const { uid, username, email } = userInfo;
+      dispatch(userActions.login({ uid, username, email }));
     } catch (error) {
       console.error(error);
       setError(error.message);
@@ -59,13 +63,14 @@ function useUser() {
 
     for (const key in users) {
       if (users[key].email === email) {
-        setUserData(users[key]);
+        const { uid, email, username } = users[key];
+        dispatch(userActions.login({ uid, email, username }));
         break;
       }
     }
   };
 
-  return { setUser, getUser, getUsersList, userData, isLoading, error };
+  return { setUser, getUser, getUsersList, isLoading, error };
 }
 
 export default useUser;

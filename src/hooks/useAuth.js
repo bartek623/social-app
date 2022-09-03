@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userActions } from "../store/user-slice";
 
 function useAuth() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   const sendRequest = async function (login, email, password) {
     setIsLoading(true);
@@ -22,7 +25,7 @@ function useAuth() {
 
       const data = await res.json();
 
-      console.log(data);
+      dispatch(userActions.setToken(data.idToken));
     } catch (error) {
       console.error(error);
       setError(error.message);

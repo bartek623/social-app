@@ -13,13 +13,15 @@ const userSlice = createSlice({
       state.uid = action.payload.uid;
       state.email = action.payload.email;
       state.username = action.payload.username;
-      state.token = action.payload.token;
     },
     logout: (state) => {
       state.uid = "";
       state.email = "";
       state.username = "";
       state.token = "";
+    },
+    setToken: (state, action) => {
+      state.token = action.payload;
     },
   },
 });
