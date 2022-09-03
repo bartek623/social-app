@@ -1,5 +1,7 @@
+import Authorization from "../components/Authorization/Authorization";
+
 function AuthPage() {
-  return <div>login</div>;
+  return <Authorization />;
 }
 
 export default AuthPage;

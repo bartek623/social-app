@@ -1,0 +1,28 @@
+.spinner {
+  background: conic-gradient(#ccc 1%, transparent 90%);
+  border-radius: 50%;
+  width: 15rem;
+  height: 15rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: rotate 0.8s infinite linear reverse;
+}
+
+.inside {
+  background-color: #222;
+  border-radius: 50%;
+  width: 95%;
+  height: 95%;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
