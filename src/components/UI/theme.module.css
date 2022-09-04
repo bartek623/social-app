@@ -23,11 +23,16 @@
   border-radius: 100rem;
   padding: 0.6rem 1.2rem;
   transition: all 0.15s;
+  font-family: inherit;
 }
 
 .btn:hover {
   border: 1px solid #777;
   cursor: pointer;
+}
+
+.option {
+  font-family: inherit;
 }
 
 .light .option {
