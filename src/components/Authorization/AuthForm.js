@@ -45,6 +45,9 @@ function AuthForm(props) {
       <button className={style.submit} type="submit">
         {login ? "Login" : "Register"}
       </button>
+
+      {props.error && <p className={style.error}>{props.error}</p>}
+
       <button type="button" className={style.switch} onClick={switchHandler}>
         {login ? "Create an account" : "Back to login"}
       </button>

@@ -46,6 +46,13 @@
   background-color: #fff;
 }
 
+.error {
+  margin-top: -2.4rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: rgb(177, 43, 43);
+}
+
 .submit {
   margin-top: 3.2rem;
   background-color: #444;

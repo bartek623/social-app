@@ -19,7 +19,7 @@ function Content() {
 
   useEffect(() => {
     getPosts(updatePosts);
-    console.log("post fetched");
+    console.log("posts fetched");
   }, [getPosts]);
 
   const openModalHandler = function () {

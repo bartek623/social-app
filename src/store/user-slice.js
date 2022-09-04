@@ -19,9 +19,11 @@ const userSlice = createSlice({
       state.email = "";
       state.username = "";
       state.token = "";
+      localStorage.removeItem("token");
     },
     setToken: (state, action) => {
       state.token = action.payload;
+      localStorage.setItem("token", action.payload);
     },
   },
 });

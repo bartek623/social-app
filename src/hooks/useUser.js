@@ -26,9 +26,16 @@ function useUser() {
       return Object.values(users);
     } catch (error) {
       setIsLoading(false);
-      console.error(error);
       setError(error.message);
     }
+  };
+
+  const isUsernameOccupied = async function (username) {
+    const users = await getUsersList();
+
+    const userExists = !!users.find((user) => user.username === username);
+
+    return userExists;
   };
 
   const setUser = async function (email, username) {
@@ -52,7 +59,6 @@ function useUser() {
       const { uid, username, email } = userInfo;
       dispatch(userActions.login({ uid, username, email }));
     } catch (error) {
-      console.error(error);
       setError(error.message);
     }
     setIsLoading(false);
@@ -70,7 +76,14 @@ function useUser() {
     }
   };
 
-  return { setUser, getUser, getUsersList, isLoading, error };
+  return {
+    setUser,
+    getUser,
+    getUsersList,
+    isLoading,
+    error,
+    isUsernameOccupied,
+  };
 }
 
 export default useUser;
