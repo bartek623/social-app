@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-import LoadingSpinner from "../UI/LoadingSpinner";
 import Overlay from "../../modal/Overlay";
 import PostsList from "../Posts/PostsList";
 import style from "./Content.module.css";

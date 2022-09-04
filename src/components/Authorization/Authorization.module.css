@@ -11,21 +11,44 @@
   position: absolute;
 
   transform: rotate(30deg) scale(1.8);
+  background-color: #ccc;
 
   width: 50%;
   height: 100%;
-
-  background-color: #ccc;
 }
 
 .left {
   left: -50%;
   top: -50%;
+  animation: goDown 1.5s ease-out;
 }
 
 .right {
   right: -50%;
   bottom: -50%;
+  animation: goUp 1.5s ease-out;
+}
+
+@keyframes goDown {
+  0% {
+    top: -75%;
+    opacity: 0;
+  }
+  100% {
+    top: -50%;
+    opacity: 1;
+  }
+}
+
+@keyframes goUp {
+  0% {
+    bottom: -75%;
+    opacity: 0;
+  }
+  100% {
+    bottom: -50%;
+    opacity: 1;
+  }
 }
 
 .center {
