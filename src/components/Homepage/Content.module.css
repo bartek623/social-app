@@ -1,15 +1,60 @@
 .container {
+  /* from layput */
+  background-color: inherit;
+  color: inherit;
+
   flex: 1;
 
   overflow: auto;
 }
 
-.dark {
-  background-color: #222;
-  color: #ddd;
+.posts {
+  width: 96rem;
+  max-width: 98%;
+
+  margin: 1.2rem auto;
+  /* border-left: 1px solid rgba(34, 34, 34, 0.1);
+  border-right: 1px solid rgba(34, 34, 34, 0.1); */
+
+  list-style: none;
 }
 
-.light {
-  background-color: #eee;
+.top-bar {
+  width: 100%;
+  padding: 1.2rem;
+  border-bottom: 1px solid rgba(119, 119, 119, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.control {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.sort-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.sort-input label {
+  margin-left: 8px;
+}
+
+.sort-input select {
+  background-color: inherit;
+  color: inherit;
+  padding: 2px;
+  border-radius: 100rem;
+}
+
+.sort-input option {
   color: #333;
+}
+
+.top-bar button {
+  background-color: inherit;
+  color: inherit;
 }

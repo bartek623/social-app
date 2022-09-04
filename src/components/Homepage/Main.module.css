@@ -1,4 +1,8 @@
 .main {
+  /* from layout */
+  background-color: inherit;
+  color: inherit;
+
   display: flex;
   height: 100%;
 }

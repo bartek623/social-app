@@ -1,4 +1,8 @@
 .nav {
+  /* from layout */
+  background-color: inherit;
+  color: inherit;
+
   position: relative;
   z-index: 99;
   height: 100%;
@@ -17,18 +21,8 @@
   gap: 4.2rem;
 }
 
-.dark {
-  background-color: #222;
-  color: #ddd;
-}
-
-.light {
-  background-color: #eee;
-  color: #333;
-}
-
 .nav span {
-  transition: all 0.2s;
+  transition: color, transform 0.2s;
 }
 
 .nav span:hover {

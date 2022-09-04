@@ -1,0 +1,41 @@
+.light,
+.light * {
+  background-color: #eee;
+  color: #333;
+}
+
+.dark,
+.dark * {
+  background-color: #222;
+  color: #ddd;
+}
+
+.light .btn {
+  border: 1px solid #333;
+}
+
+.dark .btn {
+  border: 1px solid #eee;
+}
+
+.btn {
+  background-color: inherit;
+  border-radius: 100rem;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.15s;
+}
+
+.btn:hover {
+  border: 1px solid #777;
+  cursor: pointer;
+}
+
+.light .option {
+  color: #333;
+  background-color: #eee;
+}
+
+.dark .option {
+  color: #ddd;
+  background-color: #222;
+}

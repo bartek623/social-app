@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
 import style from "./NavPanel.module.css";
 
 function NavPanel() {
-  const theme = useSelector((state) => state.ui).theme;
   return (
-    <nav className={`${style.nav} ${style[theme]}`}>
+    <nav className={style.nav}>
       <ul>
         <li>
           <span className="material-symbols-outlined">account_circle</span>
