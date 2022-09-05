@@ -1,11 +1,17 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import style from "./NavPanel.module.css";
 
 function NavPanel() {
+  const user = useSelector((state) => state.user);
+
   return (
     <nav className={style.nav}>
       <ul>
         <li>
-          <span className="material-symbols-outlined">account_circle</span>
+          <Link to={`/profile/${user.uid}`}>
+            <span className="material-symbols-outlined">account_circle</span>
+          </Link>
         </li>
         {/* <li>Profile</li> */}
         <li>

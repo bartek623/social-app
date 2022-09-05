@@ -1,0 +1,20 @@
+.container {
+  /* from layput */
+  background-color: inherit;
+  color: inherit;
+
+  flex: 1;
+
+  overflow: auto;
+}
+
+.content {
+  width: 96rem;
+  max-width: 98%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 1.2rem auto;
+}

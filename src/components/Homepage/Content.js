@@ -7,6 +7,7 @@ import style from "./Content.module.css";
 import themeStyle from "../UI/theme.module.css";
 import usePost from "../../hooks/usePost";
 import LoadingBars from "../UI/LoadingBars";
+import Container from "../UI/Container";
 
 function Content() {
   const [showModal, setShowModal] = useState(false);
@@ -39,23 +40,21 @@ function Content() {
   }
 
   return (
-    <div className={style.container}>
-      <div className={style.content}>
-        <div className={style["top-bar"]}>
-          <div className={`${style.control} ${style["sort-input"]}`}>
-            <label htmlFor="sort">Sort</label>
-            <select id="sort">
-              <option className={themeStyle.option}>Date (Newest)</option>
-              <option className={themeStyle.option}>Date (Oldest)</option>
-              <option className={themeStyle.option}>Most popular</option>
-            </select>
-          </div>
-          <button className={themeStyle.btn} onClick={openModalHandler}>
-            New Post
-          </button>
+    <Container>
+      <div className={style["top-bar"]}>
+        <div className={`${style.control} ${style["sort-input"]}`}>
+          <label htmlFor="sort">Sort</label>
+          <select id="sort">
+            <option className={themeStyle.option}>Date (Newest)</option>
+            <option className={themeStyle.option}>Date (Oldest)</option>
+            <option className={themeStyle.option}>Most popular</option>
+          </select>
         </div>
-        <PostsList posts={posts} />
+        <button className={themeStyle.btn} onClick={openModalHandler}>
+          New Post
+        </button>
       </div>
+      <PostsList posts={posts} />
       {showModal &&
         ReactDOM.createPortal(
           <Overlay
@@ -64,7 +63,7 @@ function Content() {
           />,
           document.getElementById("modal")
         )}
-    </div>
+    </Container>
   );
 }
 
