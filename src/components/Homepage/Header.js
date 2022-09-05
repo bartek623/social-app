@@ -19,7 +19,7 @@ function Header() {
 
   return (
     <header className={style["main-header"]}>
-      <Link to="/">SocialApp</Link>
+      <Link to="/home">SocialApp</Link>
       <button className={themeStyle.btn} onClick={switchThemeHandler}>
         switch theme
       </button>
