@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 function UserGuard(props) {
   const user = useSelector((state) => state.user);
 
-  if (user.token) return <Navigate to="/" />;
+  if (user.token.token) return <Navigate to="/" />;
 
   return <>{props.children}</>;
 }

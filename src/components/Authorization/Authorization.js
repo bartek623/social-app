@@ -9,16 +9,34 @@ import style from "./Authorization.module.css";
 
 function Authorization() {
   const dispatch = useDispatch();
-  const { isLoading, error, sendRequest: authentication } = useAuth();
+  const {
+    isLoading,
+    error,
+    sendRequest: authentication,
+    getUserInfo,
+  } = useAuth();
 
   useEffect(() => {
-    const token =
-      localStorage.getItem("token") === "null"
-        ? null
-        : localStorage.getItem("token");
+    const tokenInfo = JSON.parse(localStorage.getItem("tokenInfo"));
 
-    dispatch(userActions.setToken(token));
-  }, [dispatch]);
+    const timeLeft = tokenInfo?.expires - Date.now();
+
+    const expires = timeLeft > 60 ? Date.now() + timeLeft : 0;
+
+    const token = expires ? tokenInfo.token : null;
+
+    if (token) {
+      const login = function (userData) {
+        const { id, email, username } = userData;
+        dispatch(userActions.login({ uid: id, email, username }));
+      };
+
+      //get user data
+      getUserInfo(token, login);
+    }
+
+    dispatch(userActions.setToken({ token, expires }));
+  }, [dispatch, getUserInfo]);
 
   let content = <AuthForm onSubmit={authentication} error={error} />;
 

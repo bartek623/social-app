@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { userActions } from "../store/user-slice";
@@ -9,13 +9,14 @@ function useUser() {
   const dispatch = useDispatch();
 
   const url =
-    "https://social-app-32f5b-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+    "https://social-app-32f5b-default-rtdb.europe-west1.firebasedatabase.app/";
 
+  // Get all users list from DB
   const getUsersList = async function () {
     // First fetch to check how many users already are registered
     try {
       setIsLoading(true);
-      const resUsers = await fetch(url);
+      const resUsers = await fetch(url + "users.json");
       if (!resUsers.ok) throw new Error("Error connecting to the database");
 
       const users = await resUsers.json();
@@ -30,6 +31,25 @@ function useUser() {
     }
   };
 
+  // Find existing user in DB
+  const findUser = useCallback(async function (id) {
+    try {
+      setIsLoading(true);
+      const resUsers = await fetch(`${url}users/${id}.json`);
+      if (!resUsers.ok) throw new Error("Error getting user");
+
+      const user = await resUsers.json();
+
+      setIsLoading(false);
+
+      return user;
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.message);
+    }
+  }, []);
+
+  //Is username avalaible
   const isUsernameOccupied = async function (username) {
     const users = await getUsersList();
 
@@ -38,48 +58,38 @@ function useUser() {
     return userExists;
   };
 
-  const setUser = async function (email, username) {
-    const users = await getUsersList();
-
-    // User ID as number of users already registered incremented by 1
-    const userId = users.length + 1;
-    const userInfo = { uid: userId, username, email };
-
+  //Set new user to DB
+  const setUser = async function (id, email, username) {
     try {
       setIsLoading(true);
       // Second fetch to set new user in DB
-      const res = await fetch(url, {
-        method: "POST",
+      const res = await fetch(`${url}users/${id}.json`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userInfo),
+        body: JSON.stringify({ id, username, email }),
       });
 
       if (!res.ok) throw new Error("Error sending to database");
 
-      const { uid, username, email } = userInfo;
-      dispatch(userActions.login({ uid, username, email }));
+      dispatch(userActions.login({ uid: id, username, email }));
     } catch (error) {
       setError(error.message);
     }
     setIsLoading(false);
   };
 
-  const getUser = async function (email) {
-    const users = await getUsersList();
+  const getUser = async function (id) {
+    const user = await findUser(id);
+    const { uid, email, username } = user;
 
-    for (const key in users) {
-      if (users[key].email === email) {
-        const { uid, email, username } = users[key];
-        dispatch(userActions.login({ uid, email, username }));
-        break;
-      }
-    }
+    dispatch(userActions.login({ uid, email, username }));
   };
 
   return {
     setUser,
     getUser,
     getUsersList,
+    findUser,
     isLoading,
     error,
     isUsernameOccupied,

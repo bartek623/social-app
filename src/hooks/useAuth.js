@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/user-slice";
 import useUser from "./useUser";
 
 function useAuth() {
-  const { setUser, getUser, userError, isUsernameOccupied } = useUser();
+  const { setUser, getUser, userError, isUsernameOccupied, findUser } =
+    useUser();
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -38,17 +39,53 @@ function useAuth() {
 
       const data = await res.json();
 
-      dispatch(userActions.setToken(data.idToken));
+      dispatch(
+        userActions.setToken({
+          token: data.idToken,
+          expires: Date.now() + +data.expiresIn * 1000,
+        })
+      );
 
-      if (!login) await setUser(email, username);
-      else await getUser(email);
+      if (!login) await setUser(data.localId, email, username);
+      else await getUser(data.localId);
     } catch (err) {
       setError(err.message);
     }
     setIsLoading(false);
   };
 
-  return { isLoading, error, sendRequest };
+  // get user ID by token, then take whole user info by ID
+  const getUserInfo = useCallback(
+    async function (token, applyFn) {
+      setIsLoading(true);
+      try {
+        const res = await fetch(
+          "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCN7tOJMlaJh-KbcVJ4mPR-yfLLX-boGh4",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idToken: token }),
+          }
+        );
+
+        if (!res.ok) throw new Error("Cannot find user by token");
+
+        const data = await res.json();
+
+        const user = await findUser(data.users[0].localId);
+
+        setIsLoading(false);
+
+        applyFn(user);
+      } catch (err) {
+        console.error(err);
+        setIsLoading(false);
+      }
+    },
+    [findUser]
+  );
+
+  return { isLoading, error, sendRequest, getUserInfo };
 }
 
 export default useAuth;

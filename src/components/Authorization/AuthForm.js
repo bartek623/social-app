@@ -3,6 +3,7 @@ import style from "./AuthForm.module.css";
 
 function AuthForm(props) {
   const [login, setLogin] = useState(true);
+  const [error, setError] = useState(props.error);
   const emailInputRef = useRef();
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
@@ -18,7 +19,10 @@ function AuthForm(props) {
     const username = usernameInputRef.current?.value || "";
     const password = passwordInputRef.current.value;
 
-    if (password.trim().length < 6) return;
+    if (password.trim().length < 6) {
+      setError("Password is too short (min 6 characters)");
+      return;
+    }
 
     props.onSubmit(login, email, username, password);
   };
@@ -46,7 +50,7 @@ function AuthForm(props) {
         {login ? "Login" : "Register"}
       </button>
 
-      {props.error && <p className={style.error}>{props.error}</p>}
+      {error && <p className={style.error}>{error}</p>}
 
       <button type="button" className={style.switch} onClick={switchHandler}>
         {login ? "Create an account" : "Back to login"}

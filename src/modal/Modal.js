@@ -6,6 +6,8 @@ function Modal(props) {
   const user = useSelector((state) => state.user).username;
   const contentInputRef = useRef();
 
+  console.log(user);
+
   const submitHandler = function (e) {
     e.preventDefault();
 
