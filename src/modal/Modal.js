@@ -3,17 +3,20 @@ import { useSelector } from "react-redux";
 import style from "./Modal.module.css";
 
 function Modal(props) {
-  const user = useSelector((state) => state.user).username;
+  const user = useSelector((state) => state.user);
   const contentInputRef = useRef();
-
-  console.log(user);
 
   const submitHandler = function (e) {
     e.preventDefault();
 
     const content = contentInputRef.current.value;
 
-    const postInfo = { author: user, content, date: new Date() };
+    const postInfo = {
+      author: user.username,
+      authorId: user.uid,
+      content,
+      date: new Date(),
+    };
 
     props.createPost(postInfo);
     props.onClose();

@@ -6,6 +6,7 @@ import PostsList from "../Posts/PostsList";
 import style from "./Content.module.css";
 import themeStyle from "../UI/theme.module.css";
 import usePost from "../../hooks/usePost";
+import LoadingBars from "../UI/LoadingBars";
 
 function Content() {
   const [showModal, setShowModal] = useState(false);
@@ -34,17 +35,7 @@ function Content() {
   };
 
   if (isLoading) {
-    return (
-      <div className={style.container}>
-        <div className={style.content}>
-          <div className={style.loading}>
-            <div className={style["loading-bar"]}></div>
-            <div className={style["loading-bar"]}></div>
-            <div className={style["loading-bar"]}></div>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingBars />;
   }
 
   return (

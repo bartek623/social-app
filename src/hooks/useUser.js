@@ -32,13 +32,18 @@ function useUser() {
   };
 
   // Find existing user in DB
-  const findUser = useCallback(async function (id) {
+  const findUser = useCallback(async function (id, applyFn = () => {}) {
     try {
       setIsLoading(true);
       const resUsers = await fetch(`${url}users/${id}.json`);
+
       if (!resUsers.ok) throw new Error("Error getting user");
 
       const user = await resUsers.json();
+
+      if (user === null) throw new Error("User not found!");
+
+      applyFn(user);
 
       setIsLoading(false);
 
