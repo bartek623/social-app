@@ -42,6 +42,12 @@ function useAuth() {
       dispatch(
         userActions.setToken({
           token: data.idToken,
+        })
+      );
+      localStorage.setItem(
+        "tokenInfo",
+        JSON.stringify({
+          token: data.idToken,
           expires: Date.now() + +data.expiresIn * 1000,
         })
       );

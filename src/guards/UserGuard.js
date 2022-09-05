@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import useStorageToken from "../hooks/useStorageToken";
 
 function UserGuard(props) {
   const user = useSelector((state) => state.user);
 
-  if (user.token.token) return <Navigate to="/" />;
+  useStorageToken();
+
+  if (user.token) return <Navigate to="/home" />;
 
   return <>{props.children}</>;
 }

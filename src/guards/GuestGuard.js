@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
+
+import useStorageToken from "../hooks/useStorageToken";
 
 function GuestGuard(props) {
   const user = useSelector((state) => state.user);
 
-  if (!user.token.token) return <Navigate to="/login" />;
+  useStorageToken();
+
+  if (!user.token) return <Navigate to="/login" />;
 
   return <>{props.children}</>;
 }

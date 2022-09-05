@@ -6,7 +6,7 @@ const userSlice = createSlice({
     uid: "",
     email: "",
     username: "",
-    token: {},
+    token: "",
   },
   reducers: {
     login: (state, action) => {
@@ -22,15 +22,15 @@ const userSlice = createSlice({
       localStorage.removeItem("tokenInfo");
     },
     setToken: (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload.token;
 
-      localStorage.setItem(
-        "tokenInfo",
-        JSON.stringify({
-          token: action.payload.token,
-          expires: action.payload.expires,
-        })
-      );
+      // localStorage.setItem(
+      //   "tokenInfo",
+      //   JSON.stringify({
+      //     token: action.payload.token,
+      //     expires: action.payload.expires,
+      //   })
+      // );
     },
   },
 });

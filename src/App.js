@@ -6,7 +6,7 @@ import AuthPage from "./pages/AuthPage";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/*" element={<HomePage />} />
       <Route path="/login" element={<AuthPage />} />
     </Routes>
   );
