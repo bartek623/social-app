@@ -22,8 +22,10 @@
   background-color: inherit;
   border-radius: 100rem;
   padding: 0.6rem 1.2rem;
-  transition: all 0.15s;
   font-family: inherit;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.02);
+
+  transition: border 0.2s;
 }
 
 .btn:hover {

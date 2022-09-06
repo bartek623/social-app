@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+
+import PostControl from "./PostControl";
 import style from "./Post.module.css";
 
 function Post(props) {
   const date = new Intl.DateTimeFormat("en-GB").format(
-    new Date(props.post.date)
+    new Date(props.post.date || Date.now())
   );
 
   return (
@@ -13,6 +15,11 @@ function Post(props) {
         <span className={style.date}>{date}</span>
       </header>
       <p className={style.content}>{props.post.content}</p>
+      <PostControl
+        postId={props.post.postId}
+        likes={props.post.likedBy}
+        comments={props.post.comments}
+      />
     </li>
   );
 }

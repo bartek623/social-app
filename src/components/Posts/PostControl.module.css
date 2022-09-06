@@ -1,0 +1,48 @@
+.control {
+  border-top: 1px solid rgba(119, 119, 119, 0.2);
+  padding-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btns {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.btns button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.5rem;
+}
+
+.btns span {
+  background-color: transparent;
+}
+
+.liked .star {
+  color: rgb(226, 204, 9);
+}
+
+.liked {
+  border: 1px solid rgb(212, 193, 18) !important;
+}
+
+.star {
+  margin-top: -4px;
+}
+
+.reactions {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.5rem;
+}
