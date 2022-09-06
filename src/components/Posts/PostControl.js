@@ -24,6 +24,14 @@ function PostControl(props) {
     likePost(props.postId, newLikes);
   };
 
+  const editCommentHandler = function () {
+    props.showComments(true);
+  };
+
+  const showCommentHandler = function () {
+    props.showComments(false);
+  };
+
   return (
     <div className={style.control}>
       <div className={style.reactions}>
@@ -35,13 +43,14 @@ function PostControl(props) {
             star
           </span>
         </div>
-        <div className={style.stats}>
+        <button className={style.stats} onClick={showCommentHandler}>
           <span>{commentsAmount}</span>
           <span className={`material-symbols-outlined ${style.icon}`}>
             comment
           </span>
-        </div>
+        </button>
       </div>
+
       <div className={style.btns}>
         <button
           className={`${themeStyle.btn} ${isLiked ? style.liked : ""}`}
@@ -54,7 +63,7 @@ function PostControl(props) {
           </span>
           <span>Like</span>
         </button>
-        <button className={themeStyle.btn}>
+        <button className={themeStyle.btn} onClick={editCommentHandler}>
           <span className={`material-symbols-outlined ${style.icon}`}>
             comment
           </span>

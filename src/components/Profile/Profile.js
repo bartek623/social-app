@@ -7,6 +7,7 @@ import PostsList from "../Posts/PostsList";
 import style from "./Profile.module.css";
 import usePost from "../../hooks/usePost";
 import Container from "../UI/Container";
+import Card from "../UI/Card";
 
 function Profile() {
   const { error, isLoading, findUser } = useUser();
@@ -29,12 +30,12 @@ function Profile() {
 
   return (
     <Container>
-      <div className={style.profile}>
+      <Card>
         <div className={style["profile-background"]}>
           <div className={style.avatar}></div>
         </div>
         <span className={style.username}>{user.username}</span>
-      </div>
+      </Card>
       {postLoading && <LoadingBars />}
       {!postLoading && <PostsList posts={postsFiltered} />}
     </Container>

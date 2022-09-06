@@ -68,7 +68,24 @@ function usePost() {
     setIsLoading(false);
   };
 
-  return { getPosts, setPost, isLoading, error, likePost };
+  const setComment = async function (postId, newComments, applyFn) {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${url}posts/${postId}/.json`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ comments: newComments }),
+      });
+
+      if (!res.ok) throw new Error("Cannot comment post 🔥");
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+    setIsLoading(false);
+  };
+
+  return { getPosts, setPost, isLoading, error, likePost, setComment };
 }
 
 export default usePost;

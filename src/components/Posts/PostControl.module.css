@@ -40,6 +40,14 @@
   gap: 2.4rem;
 }
 
+.reactions button {
+  border: none;
+}
+
+.reactions button:hover {
+  cursor: pointer;
+}
+
 .stats {
   display: flex;
   align-items: center;

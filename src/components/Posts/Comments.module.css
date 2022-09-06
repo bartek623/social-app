@@ -1,0 +1,23 @@
+.comments {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 1rem;
+}
+
+.not-found {
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.comment h5 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.comment p {
+  font-size: 1.4rem;
+  word-wrap: break-word;
+}
