@@ -1,7 +1,6 @@
 import Card from "../UI/Card";
 import CreateComment from "./CreateComment";
 import style from "./Comments.module.css";
-import { useState } from "react";
 
 function Comments(props) {
   const { comments } = props;

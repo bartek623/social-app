@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom";
 
 import Overlay from "../../modal/Overlay";
@@ -9,19 +9,9 @@ import usePost from "../../hooks/usePost";
 import LoadingBars from "../UI/LoadingBars";
 import Container from "../UI/Container";
 
-function Content() {
+function Content(props) {
   const [showModal, setShowModal] = useState(false);
-  const { getPosts, setPost, isLoading } = usePost();
-  const [posts, setPosts] = useState([]);
-
-  const updatePosts = function (posts) {
-    setPosts((prevPosts) => [...posts, ...prevPosts]);
-  };
-
-  useEffect(() => {
-    getPosts(updatePosts);
-    console.log("posts fetched");
-  }, [getPosts]);
+  const { isLoading } = usePost();
 
   const openModalHandler = function () {
     setShowModal(true);
@@ -29,10 +19,6 @@ function Content() {
 
   const closeModalHandler = function () {
     setShowModal(false);
-  };
-
-  const createPostHandler = function (postInfo) {
-    setPost(postInfo, updatePosts);
   };
 
   if (isLoading) {
@@ -54,12 +40,12 @@ function Content() {
           New Post
         </button>
       </div>
-      <PostsList posts={posts} />
+      <PostsList posts={props.posts} />
       {showModal &&
         ReactDOM.createPortal(
           <Overlay
             onClose={closeModalHandler}
-            createPost={createPostHandler}
+            createPost={props.onPostCreate}
           />,
           document.getElementById("modal")
         )}

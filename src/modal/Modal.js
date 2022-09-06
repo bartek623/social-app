@@ -16,8 +16,8 @@ function Modal(props) {
       authorId: user.uid,
       content,
       date: new Date(),
-      likedBy: [],
-      comments: [],
+      likedBy: null,
+      comments: null,
     };
 
     props.createPost(postInfo);

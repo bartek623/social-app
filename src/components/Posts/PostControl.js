@@ -7,7 +7,7 @@ import style from "./PostControl.module.css";
 function PostControl(props) {
   const user = useSelector((state) => state.user);
   const { likePost } = usePost();
-  const [likes, setLikes] = useState(props.likes || []);
+  const [likes, setLikes] = useState(props.likes ? props.likes : []);
 
   const likesAmount = likes?.length || "0";
   const isLiked = likes?.includes(user.username) || false;
