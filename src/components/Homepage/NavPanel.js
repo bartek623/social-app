@@ -10,26 +10,41 @@ function NavPanel() {
       <ul>
         <li>
           <Link to={`/profile/${user.uid}`}>
-            <span className="material-symbols-outlined">account_circle</span>
+            <span className={`material-symbols-outlined ${style.icon}`}>
+              account_circle
+            </span>
           </Link>
+          <span className={style.label}>Profile</span>
         </li>
         {/* <li>Profile</li> */}
         <li>
-          <span className="material-symbols-outlined">explore</span>
+          <span className={`material-symbols-outlined ${style.icon}`}>
+            explore
+          </span>
+          <span className={style.label}>Explore</span>
         </li>
         {/* <li>Explore</li> */}
         <li>
-          <span className="material-symbols-outlined">
+          <span className={`material-symbols-outlined ${style.icon}`}>
             circle_notifications
           </span>
+          <span className={style.label}>Notifications</span>
         </li>
         {/* <li>Notifications</li> */}
         <li>
-          <span className="material-symbols-outlined">stars</span>
+          <Link to="/liked">
+            <span className={`material-symbols-outlined ${style.icon}`}>
+              stars
+            </span>
+          </Link>
+          <span className={style.label}>Liked</span>
         </li>
         {/* <li>Saved Posts</li> */}
         <li>
-          <span className="material-symbols-outlined">settings</span>
+          <span className={`material-symbols-outlined ${style.icon}`}>
+            settings
+          </span>
+          <span className={style.label}>Settings</span>
         </li>
         {/* <li>Settings</li> */}
       </ul>

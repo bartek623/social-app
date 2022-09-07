@@ -5,22 +5,19 @@ import useUser from "../../hooks/useUser";
 import LoadingBars from "../UI/LoadingBars";
 import PostsList from "../Posts/PostsList";
 import style from "./Profile.module.css";
-import usePost from "../../hooks/usePost";
 import Container from "../UI/Container";
 import Card from "../UI/Card";
+import useLoadPosts from "../../hooks/useLoadPosts";
 
 function Profile() {
   const { error, isLoading, findUser } = useUser();
   const { userId } = useParams();
   const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
-  const { getPosts, isLoading: postLoading } = usePost();
+  const { posts, isLoading: postLoading } = useLoadPosts();
 
   useEffect(() => {
     findUser(userId, setUser);
-
-    getPosts(setPosts);
-  }, [findUser, userId, getPosts]);
+  }, [findUser, userId]);
 
   if (error) return <p className={style.error}>{error}</p>;
 

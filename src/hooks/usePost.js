@@ -51,6 +51,22 @@ function usePost() {
     setIsLoading(false);
   };
 
+  const deletePost = async function (postId) {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${url}posts/${postId}.json`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) throw new Error("Cannot delete post 🔥");
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+    setIsLoading(false);
+  };
+
   const likePost = async function (postId, newLikes) {
     setIsLoading(true);
     try {
@@ -68,7 +84,7 @@ function usePost() {
     setIsLoading(false);
   };
 
-  const setComment = async function (postId, newComments, applyFn) {
+  const setComment = async function (postId, newComments) {
     setIsLoading(true);
     try {
       const res = await fetch(`${url}posts/${postId}/.json`, {
@@ -85,7 +101,15 @@ function usePost() {
     setIsLoading(false);
   };
 
-  return { getPosts, setPost, isLoading, error, likePost, setComment };
+  return {
+    getPosts,
+    setPost,
+    deletePost,
+    isLoading,
+    error,
+    likePost,
+    setComment,
+  };
 }
 
 export default usePost;

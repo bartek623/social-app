@@ -5,13 +5,13 @@ import Overlay from "../../modal/Overlay";
 import PostsList from "../Posts/PostsList";
 import style from "./Content.module.css";
 import themeStyle from "../UI/theme.module.css";
-import usePost from "../../hooks/usePost";
 import LoadingBars from "../UI/LoadingBars";
 import Container from "../UI/Container";
+import useLoadPosts from "../../hooks/useLoadPosts";
 
 function Content(props) {
   const [showModal, setShowModal] = useState(false);
-  const { isLoading } = usePost();
+  const { posts, isLoading, createPostHandler } = useLoadPosts();
 
   const openModalHandler = function () {
     setShowModal(true);
@@ -40,12 +40,12 @@ function Content(props) {
           New Post
         </button>
       </div>
-      <PostsList posts={props.posts} />
+      <PostsList posts={posts} />
       {showModal &&
         ReactDOM.createPortal(
           <Overlay
             onClose={closeModalHandler}
-            createPost={props.onPostCreate}
+            createPost={createPostHandler}
           />,
           document.getElementById("modal")
         )}

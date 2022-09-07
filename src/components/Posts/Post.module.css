@@ -39,3 +39,23 @@
   width: 100%;
   padding: 8px 5%;
 }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.header-right button {
+  margin-top: -2px;
+  border: none;
+  font-size: 2rem;
+
+  transition: color, scale 0.2s;
+}
+
+.header-right button:hover {
+  cursor: pointer;
+  color: red;
+  scale: 1.2;
+}
