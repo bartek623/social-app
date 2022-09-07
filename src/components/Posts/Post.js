@@ -6,7 +6,6 @@ import { useState } from "react";
 import Comments from "./Comments";
 import Card from "../UI/Card";
 import { useSelector } from "react-redux";
-import useLoadPosts from "../../hooks/useLoadPosts";
 
 function Post(props) {
   const [showComments, setShowComments] = useState(false);
@@ -14,7 +13,6 @@ function Post(props) {
   const [comments, setComments] = useState(props.post.comments);
   const user = useSelector((state) => state.user);
   const isUserAuthor = user.username === props.post.author;
-  const { deletePostHandler } = useLoadPosts();
 
   const date = new Intl.DateTimeFormat("en-GB").format(
     new Date(props.post.date || Date.now())
@@ -33,7 +31,7 @@ function Post(props) {
   };
 
   const deleteHandler = function () {
-    deletePostHandler(props.post.postId);
+    props.onPostDelete(props.post.postId);
   };
 
   return (

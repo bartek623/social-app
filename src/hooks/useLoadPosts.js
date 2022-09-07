@@ -19,8 +19,6 @@ function useLoadPosts() {
   }, [getPosts]);
 
   const deletePostHandler = function (postId) {
-    setPosts((prevState) => prevState.filter((post) => post.postId !== postId));
-
     deletePost(postId);
   };
 

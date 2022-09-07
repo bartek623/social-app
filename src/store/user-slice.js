@@ -23,14 +23,6 @@ const userSlice = createSlice({
     },
     setToken: (state, action) => {
       state.token = action.payload.token;
-
-      // localStorage.setItem(
-      //   "tokenInfo",
-      //   JSON.stringify({
-      //     token: action.payload.token,
-      //     expires: action.payload.expires,
-      //   })
-      // );
     },
   },
 });

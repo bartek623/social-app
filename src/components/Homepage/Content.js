@@ -9,7 +9,7 @@ import LoadingBars from "../UI/LoadingBars";
 import Container from "../UI/Container";
 import useLoadPosts from "../../hooks/useLoadPosts";
 
-function Content(props) {
+function Content() {
   const [showModal, setShowModal] = useState(false);
   const { posts, isLoading, createPostHandler } = useLoadPosts();
 
