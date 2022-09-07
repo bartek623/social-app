@@ -56,6 +56,6 @@
 
 .header-right button:hover {
   cursor: pointer;
-  color: red;
+  color: #ad1111;
   scale: 1.2;
 }

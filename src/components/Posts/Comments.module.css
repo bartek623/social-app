@@ -21,3 +21,24 @@
   font-size: 1.4rem;
   word-wrap: break-word;
 }
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.comment-header button {
+  margin-top: -1px;
+  border: none;
+  font-size: 1.8rem;
+
+  transition: color, scale 0.2s;
+}
+
+.comment-header button:hover {
+  cursor: pointer;
+  color: #ad1111;
+  scale: 1.2;
+}
