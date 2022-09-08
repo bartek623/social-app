@@ -33,16 +33,16 @@
   cursor: pointer;
 }
 
-.option {
+.select option {
   font-family: inherit;
 }
 
-.light .option {
+.light .select option {
   color: #333;
   background-color: #eee;
 }
 
-.dark .option {
+.dark .select option {
   color: #ddd;
   background-color: #222;
 }
