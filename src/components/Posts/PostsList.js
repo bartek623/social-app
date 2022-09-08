@@ -1,14 +1,14 @@
 import { useState } from "react";
-import useLoadPosts from "../../hooks/useLoadPosts";
+import usePost from "../../hooks/usePost";
 import Post from "./Post";
 import style from "./PostsList.module.css";
 
 function PostsList(props) {
   const [posts, setPosts] = useState(props.posts);
-  const { deletePostHandler } = useLoadPosts();
+  const { deletePost } = usePost();
 
   const deleteHandler = function (postId) {
-    deletePostHandler(postId);
+    deletePost(postId);
     setPosts((prevState) => prevState.filter((post) => post.postId !== postId));
   };
 

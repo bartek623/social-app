@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
+  padding: 1.2rem 0 0.8rem;
 }
 
 .post-header a,
@@ -58,4 +58,36 @@
   cursor: pointer;
   color: #ad1111;
   scale: 1.2;
+}
+
+.tags {
+  border-bottom: 1px solid rgba(119, 119, 119, 0.2);
+  padding: 0 0.6rem 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.tags__label {
+  margin-top: 2px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.tags__box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tags__tag {
+  font-size: 1.2rem;
+  border: 1px solid rgba(119, 119, 119, 0.2);
+  padding: 2px 4px;
 }

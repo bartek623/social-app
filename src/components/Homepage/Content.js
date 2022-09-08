@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import Overlay from "../../modal/Overlay";
@@ -7,11 +7,17 @@ import style from "./Content.module.css";
 import themeStyle from "../UI/theme.module.css";
 import LoadingBars from "../UI/LoadingBars";
 import Container from "../UI/Container";
-import useLoadPosts from "../../hooks/useLoadPosts";
+import { useSelector } from "react-redux";
+import usePost from "../../hooks/usePost";
 
 function Content() {
   const [showModal, setShowModal] = useState(false);
-  const { posts, isLoading, createPostHandler } = useLoadPosts();
+  const { isLoading, getPosts, setPost } = usePost();
+  const posts = useSelector((state) => state.posts).posts;
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   const openModalHandler = function () {
     setShowModal(true);
@@ -43,10 +49,7 @@ function Content() {
       <PostsList posts={posts} />
       {showModal &&
         ReactDOM.createPortal(
-          <Overlay
-            onClose={closeModalHandler}
-            createPost={createPostHandler}
-          />,
+          <Overlay onClose={closeModalHandler} createPost={setPost} />,
           document.getElementById("modal")
         )}
     </Container>

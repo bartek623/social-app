@@ -7,17 +7,20 @@ import PostsList from "../Posts/PostsList";
 import style from "./Profile.module.css";
 import Container from "../UI/Container";
 import Card from "../UI/Card";
-import useLoadPosts from "../../hooks/useLoadPosts";
+import { useSelector } from "react-redux";
+import usePost from "../../hooks/usePost";
 
 function Profile() {
+  const posts = useSelector((state) => state.posts).posts;
+  const { getPosts, isLoading: postLoading } = usePost();
   const { error, isLoading, findUser } = useUser();
   const { userId } = useParams();
   const [user, setUser] = useState({});
-  const { posts, isLoading: postLoading } = useLoadPosts();
 
   useEffect(() => {
     findUser(userId, setUser);
-  }, [findUser, userId]);
+    getPosts();
+  }, [findUser, userId, getPosts]);
 
   if (error) return <p className={style.error}>{error}</p>;
 

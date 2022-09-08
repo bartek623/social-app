@@ -14,9 +14,13 @@ function Post(props) {
   const user = useSelector((state) => state.user);
   const isUserAuthor = user.username === props.post.author;
 
-  const date = new Intl.DateTimeFormat("en-GB").format(
-    new Date(props.post.date || Date.now())
-  );
+  const tags = props.post.tags || [];
+
+  const tagsTransformed = tags?.map((tag, i) => (
+    <span key={"tag" + i} className={style["tags__tag"]}>
+      {tag}
+    </span>
+  ));
 
   const commentsHandler = function (edit = false) {
     if (!edit) {
@@ -38,12 +42,18 @@ function Post(props) {
     <li className={style["post-item"]}>
       <section>
         <Card>
+          {tags.length > 0 && (
+            <div className={style.tags}>
+              <span className={style["tags__label"]}>Tags: </span>
+              <div className={style["tags__box"]}>{tagsTransformed}</div>
+            </div>
+          )}
           <header className={style["post-header"]}>
             <Link to={`/profile/${props.post.authorId}`}>
               {props.post.author}
             </Link>
             <div className={style["header-right"]}>
-              <span className={style.date}>{date}</span>
+              <span className={style.date}>{props.post.date}</span>
               {isUserAuthor && (
                 <button
                   className="material-symbols-outlined"

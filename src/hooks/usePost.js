@@ -1,37 +1,51 @@
 import { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { postsActions } from "../store/posts-slice";
 
 function usePost() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   const url =
     "https://social-app-32f5b-default-rtdb.europe-west1.firebasedatabase.app/";
 
-  const getPosts = useCallback(async function (applyFn) {
-    setIsLoading(true);
-    try {
-      const res = await fetch(url + "posts.json");
-      if (!res.ok) throw new Error("Cannot get posts 🔥");
+  const getPosts = useCallback(
+    async function () {
+      setIsLoading(true);
+      try {
+        const res = await fetch(url + "posts.json");
+        if (!res.ok) throw new Error("Cannot get posts 🔥");
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (!data) applyFn([]);
-      else {
-        const dataEntries = Object.entries(data);
-        const dataTransformed = dataEntries.map((data) => ({
-          postId: data[0],
-          ...data[1],
-        }));
-        applyFn(dataTransformed.reverse());
+        if (!data)
+          dispatch(postsActions.loadPosts({ replace: true, posts: [] }));
+        else {
+          const dataEntries = Object.entries(data);
+          const dataTransformed = dataEntries.map((data) => ({
+            postId: data[0],
+            ...data[1],
+          }));
+
+          dispatch(
+            postsActions.loadPosts({
+              replace: true,
+              posts: dataTransformed.reverse(),
+            })
+          );
+        }
+      } catch (error) {
+        console.error(error);
+        setError(error);
       }
-    } catch (error) {
-      console.error(error);
-      setError(error);
-    }
-    setIsLoading(false);
-  }, []);
+      console.log("posts fetched");
+      setIsLoading(false);
+    },
+    [dispatch]
+  );
 
-  const setPost = async function (postInfo, applyFn) {
+  const setPost = async function (postInfo) {
     setIsLoading(true);
     try {
       const res = await fetch(url + "posts.json", {
@@ -43,7 +57,12 @@ function usePost() {
 
       const data = await res.json();
 
-      applyFn([{ postId: data.name, ...postInfo }]);
+      dispatch(
+        postsActions.loadPosts({
+          replace: false,
+          posts: [{ postId: data.name, ...postInfo }],
+        })
+      );
     } catch (error) {
       console.error(error);
       setError(error);
@@ -60,6 +79,8 @@ function usePost() {
       });
 
       if (!res.ok) throw new Error("Cannot delete post 🔥");
+
+      dispatch(postsActions.deletePost(postId));
     } catch (error) {
       console.error(error);
       setError(error);
@@ -77,6 +98,8 @@ function usePost() {
       });
 
       if (!res.ok) throw new Error("Cannot like post 🔥");
+
+      dispatch(postsActions.updateLikes({ postId, likes: newLikes }));
     } catch (error) {
       console.error(error);
       setError(error);
@@ -94,6 +117,8 @@ function usePost() {
       });
 
       if (!res.ok) throw new Error("Cannot comment post 🔥");
+
+      dispatch(postsActions.updateComments({ postId, comments: newComments }));
     } catch (error) {
       console.error(error);
       setError(error);

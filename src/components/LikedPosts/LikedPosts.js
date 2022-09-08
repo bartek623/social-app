@@ -2,12 +2,18 @@ import style from "./LikedPosts.module.css";
 import PostsList from "../Posts/PostsList";
 import Container from "../UI/Container";
 import { useSelector } from "react-redux";
-import useLoadPosts from "../../hooks/useLoadPosts";
 import LoadingBars from "../UI/LoadingBars";
+import usePost from "../../hooks/usePost";
+import { useEffect } from "react";
 
 function LikedPosts() {
   const user = useSelector((state) => state.user);
-  const { posts, isLoading } = useLoadPosts();
+  const posts = useSelector((state) => state.posts).posts;
+  const { isLoading, getPosts } = usePost();
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   const likedPosts = posts.filter((post) =>
     post.likedBy?.includes(user.username)
