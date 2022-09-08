@@ -4,9 +4,9 @@ import style from "./Modal.module.css";
 
 const getTags = function (text) {
   const textWords = text.split(" ");
-  const tags = textWords.filter(
-    (word) => word[0] === "#" && word.trim().length > 1
-  );
+  const tags = textWords
+    .filter((word) => word[0] === "#" && word.trim().length > 1)
+    .map((tag) => tag.slice(1));
   return tags;
 };
 

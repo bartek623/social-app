@@ -1,11 +1,11 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import PostControl from "./PostControl";
 import style from "./Post.module.css";
-import { useState } from "react";
 import Comments from "./Comments";
 import Card from "../UI/Card";
-import { useSelector } from "react-redux";
 
 function Post(props) {
   const [showComments, setShowComments] = useState(false);
@@ -17,9 +17,9 @@ function Post(props) {
   const tags = props.post.tags || [];
 
   const tagsTransformed = tags?.map((tag, i) => (
-    <span key={"tag" + i} className={style["tags__tag"]}>
-      {tag}
-    </span>
+    <li key={"tag" + i} className={style["tags__tag"]}>
+      <Link to={`/explore/${tag}`}>{tag}</Link>
+    </li>
   ));
 
   const commentsHandler = function (edit = false) {
@@ -44,7 +44,7 @@ function Post(props) {
         <Card>
           {tags.length > 0 && (
             <div className={style.tags}>
-              <span className={style["tags__label"]}>Tags: </span>
+              <ul className={style["tags__label"]}>Tags: </ul>
               <div className={style["tags__box"]}>{tagsTransformed}</div>
             </div>
           )}

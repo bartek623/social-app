@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-import Overlay from "../../modal/Overlay";
+import Overlay from "../modal/Overlay";
 import PostsList from "../Posts/PostsList";
 import style from "./Content.module.css";
 import themeStyle from "../UI/theme.module.css";

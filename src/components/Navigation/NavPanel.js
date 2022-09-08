@@ -18,9 +18,11 @@ function NavPanel() {
         </li>
         {/* <li>Profile</li> */}
         <li>
-          <span className={`material-symbols-outlined ${style.icon}`}>
-            explore
-          </span>
+          <Link to="/explore">
+            <span className={`material-symbols-outlined ${style.icon}`}>
+              explore
+            </span>
+          </Link>
           <span className={style.label}>Explore</span>
         </li>
         {/* <li>Explore</li> */}
