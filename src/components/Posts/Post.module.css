@@ -1,5 +1,10 @@
 .post-item {
   margin-top: 4.2rem;
+  background: transparent;
+}
+
+.post-item section {
+  background: transparent;
 }
 
 .post-header {

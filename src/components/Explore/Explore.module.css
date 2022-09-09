@@ -1,10 +1,12 @@
 .header {
   width: 100%;
+  background: transparent;
 }
 
 .heading {
   font-size: 3.6rem;
   margin-bottom: 1.6rem;
+  background: transparent;
 }
 
 .header h3 {

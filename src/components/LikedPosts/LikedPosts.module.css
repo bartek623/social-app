@@ -2,8 +2,11 @@
   width: 100%;
   font-size: 3.6rem;
   margin-bottom: 2.4rem;
+
+  background-color: transparent;
 }
 
 .no-posts {
   font-size: 2.4rem;
+  background-color: transparent;
 }

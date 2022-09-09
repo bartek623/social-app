@@ -1,6 +1,7 @@
 import { useState } from "react";
 import usePost from "../../hooks/usePost";
 import Post from "./Post";
+import themeStyle from "../UI/theme.module.css";
 import style from "./PostsList.module.css";
 
 function PostsList(props) {
@@ -16,7 +17,11 @@ function PostsList(props) {
     <Post key={"p" + i} post={post} onPostDelete={deleteHandler} />
   ));
 
-  return <ul className={style["posts-list"]}>{postsTransformed}</ul>;
+  return (
+    <ul className={`${style["posts-list"]} ${themeStyle.container}`}>
+      {postsTransformed}
+    </ul>
+  );
 }
 
 export default PostsList;

@@ -1,11 +1,8 @@
 .container {
-  /* from layput */
-  background-color: inherit;
-  color: inherit;
-
   flex: 1;
 
   overflow: auto;
+  background: none;
 }
 
 .content {
@@ -17,4 +14,5 @@
   justify-content: center;
 
   margin: 1.2rem auto;
+  background: none;
 }

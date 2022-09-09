@@ -2,6 +2,8 @@
   width: 100%;
   font-size: 3.6rem;
   margin-bottom: 2.4rem;
+
+  background: transparent;
 }
 
 .no-friends {
@@ -15,6 +17,11 @@
 
   list-style: none;
   width: 100%;
+  background: transparent;
+}
+
+.friends-list li {
+  background: transparent;
 }
 
 .friends-list__friend {
