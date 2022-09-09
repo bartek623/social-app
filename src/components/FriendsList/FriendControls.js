@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 
 import useUser from "../../hooks/useUser";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import style from "./FriendControls.module.css";
 
-function ProfileControls(props) {
-  const { modifyFriends } = useUser();
+function FriendControls(props) {
+  const { modifyFriends, isLoading } = useUser();
   const user = useSelector((state) => state.user);
   const userInfo = {
     username: props.userProfile.username,
@@ -36,6 +37,16 @@ function ProfileControls(props) {
     return <></>;
   }
 
+  if (isLoading) {
+    return (
+      <div className={style["profile-controls"]}>
+        <div className={style.loading}>
+          <LoadingSpinner />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={style["profile-controls"]}>
       <button
@@ -51,4 +62,4 @@ function ProfileControls(props) {
   );
 }
 
-export default ProfileControls;
+export default FriendControls;

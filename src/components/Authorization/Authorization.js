@@ -12,7 +12,11 @@ function Authorization() {
   if (isLoading)
     content = (
       <div className={style.center}>
-        <LoadingSpinner />
+        <div className={style["loading-box"]}>
+          <LoadingSpinner>
+            <div className={style.inside}></div>
+          </LoadingSpinner>
+        </div>
       </div>
     );
 

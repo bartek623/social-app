@@ -1,9 +1,9 @@
 import style from "./LoadingSpinner.module.css";
 
-function LoadingSpinner() {
+function LoadingSpinner(props) {
   return (
     <div className={style.spinner}>
-      <div className={style.inside}></div>
+      <div className={style.inside}>{props.children}</div>
     </div>
   );
 }

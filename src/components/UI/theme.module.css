@@ -6,7 +6,8 @@
 
 .dark,
 .dark * {
-  background-color: #222;
+  background-color: #252525;
+  /* background-color: #222; */
   color: #ddd;
 }
 
@@ -52,5 +53,6 @@
 }
 
 .dark .container {
-  background-color: #252525;
+  background-color: #222;
+  /* background-color: #252525; */
 }

@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
+
 import Card from "../UI/Card";
 import CreateComment from "./CreateComment";
-import style from "./Comments.module.css";
-import { useSelector } from "react-redux";
 import usePost from "../../hooks/usePost";
+import style from "./Comments.module.css";
+import themeStyle from "../UI/theme.module.css";
 
 function Comments(props) {
   const { comments } = props;
@@ -29,7 +31,7 @@ function Comments(props) {
 
   if (comments?.length > 0) {
     commentsItems = comments.map((comment, i) => (
-      <li key={"c" + i} className={style.comment}>
+      <li key={"c" + i} className={`${style.comment} ${themeStyle.container}`}>
         <Card>
           <header className={style["comment-header"]}>
             <h5>{comment.author}</h5>
@@ -50,7 +52,7 @@ function Comments(props) {
   }
 
   return (
-    <ul className={style.comments}>
+    <ul className={`${style.comments} ${themeStyle.container}`}>
       {props.edit && (
         <li>
           <CreateComment

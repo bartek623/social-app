@@ -3,7 +3,16 @@
   flex-direction: column;
   list-style: none;
   gap: 1rem;
+  /* background: none; */
 }
+
+/* .comments li {
+  background: transparent;
+}
+
+.comment {
+  background: transparent;
+} */
 
 .not-found {
   display: block;

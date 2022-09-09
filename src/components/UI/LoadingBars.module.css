@@ -1,6 +1,6 @@
 .container {
   /* from layput */
-  background-color: inherit;
+  background: none;
   color: inherit;
 
   flex: 1;
@@ -17,12 +17,14 @@
   justify-content: center;
 
   margin: 1.2rem auto;
+  background: none;
 }
 
 .loading {
   display: flex;
   gap: 1rem;
   margin-top: 6.4rem;
+  background: none;
 }
 
 .loading-bar {

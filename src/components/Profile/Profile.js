@@ -9,7 +9,7 @@ import Container from "../UI/Container";
 import Card from "../UI/Card";
 import { useSelector } from "react-redux";
 import usePost from "../../hooks/usePost";
-import ProfileControls from "../FriendsList/FriendControls";
+import FriendControls from "../FriendsList/FriendControls";
 
 function Profile() {
   const posts = useSelector((state) => state.posts).posts;
@@ -36,7 +36,7 @@ function Profile() {
           <div className={style.avatar}></div>
         </div>
         <span className={style.username}>{user.username}</span>
-        <ProfileControls userProfile={user} />
+        <FriendControls userProfile={user} />
       </Card>
       {postLoading && <LoadingBars />}
       {!postLoading && <PostsList posts={postsFiltered} />}

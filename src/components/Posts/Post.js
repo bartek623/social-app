@@ -13,7 +13,7 @@ function Post(props) {
   const [comments, setComments] = useState(props.post.comments);
   const user = useSelector((state) => state.user);
   const isUserAuthor = user.username === props.post.author;
-  const isFriend = user.friends.some(
+  const isFriend = user.friends?.some(
     (friend) => friend.username === props.post.author
   );
 
