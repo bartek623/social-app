@@ -9,7 +9,7 @@ import Container from "../UI/Container";
 import Card from "../UI/Card";
 import { useSelector } from "react-redux";
 import usePost from "../../hooks/usePost";
-import ProfileControls from "./ProfileControls";
+import ProfileControls from "../FriendsList/FriendControls";
 
 function Profile() {
   const posts = useSelector((state) => state.posts).posts;

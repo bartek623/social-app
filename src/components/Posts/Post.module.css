@@ -100,3 +100,24 @@
   background-color: rgba(125, 125, 125, 0.5);
   transition: all 0.4s;
 }
+
+.post-header a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-header a span {
+  position: relative;
+  color: inherit;
+  font-size: 2rem;
+}
+
+.post-header a span:hover::after {
+  position: absolute;
+
+  content: attr(data-tooltip);
+  font-family: "Roboto", sans-serif;
+
+  font-size: 1.2rem;
+}

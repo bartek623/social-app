@@ -1,18 +1,18 @@
 import { useSelector } from "react-redux";
 
 import useUser from "../../hooks/useUser";
-import style from "./ProfileControls.module.css";
+import style from "./FriendControls.module.css";
 
 function ProfileControls(props) {
   const { modifyFriends } = useUser();
   const user = useSelector((state) => state.user);
   const userInfo = {
     username: props.userProfile.username,
-    userId: props.userProfile.id,
+    id: props.userProfile.id,
   };
 
   const isInFriendsList = !!user.friends?.some(
-    (friend) => friend.userId === userInfo.userId
+    (friend) => friend.id === userInfo.id
   );
 
   const setFriendsHandler = function () {
@@ -21,7 +21,7 @@ function ProfileControls(props) {
 
     if (isInFriendsList) {
       friendsUpdated = currFriends.filter(
-        (friend) => friend.userId !== userInfo.userId
+        (friend) => friend.id !== userInfo.id
       );
     }
     if (!isInFriendsList) {

@@ -13,6 +13,9 @@ function Post(props) {
   const [comments, setComments] = useState(props.post.comments);
   const user = useSelector((state) => state.user);
   const isUserAuthor = user.username === props.post.author;
+  const isFriend = user.friends.some(
+    (friend) => friend.username === props.post.author
+  );
 
   const tags = props.post.tags || [];
 
@@ -51,6 +54,19 @@ function Post(props) {
           <header className={style["post-header"]}>
             <Link to={`/profile/${props.post.authorId}`}>
               {props.post.author}
+              {isFriend && (
+                <span
+                  className="material-symbols-outlined"
+                  data-tooltip="Friend"
+                >
+                  group
+                </span>
+              )}
+              {isUserAuthor && (
+                <span className="material-symbols-outlined" data-tooltip="Me">
+                  person
+                </span>
+              )}
             </Link>
             <div className={style["header-right"]}>
               <span className={style.date}>{props.post.date}</span>

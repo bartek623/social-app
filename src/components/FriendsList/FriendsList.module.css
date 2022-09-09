@@ -1,0 +1,40 @@
+.heading {
+  width: 100%;
+  font-size: 3.6rem;
+  margin-bottom: 2.4rem;
+}
+
+.no-friends {
+  font-size: 2.4rem;
+}
+
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  list-style: none;
+  width: 100%;
+}
+
+.friends-list__friend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1.2rem;
+}
+
+.friends-list__friend a,
+.friends-list__friend a:visited {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.friends-list__friend a:hover,
+.friends-list__friend a:active {
+  cursor: pointer;
+  color: #888;
+  transition: all 0.3s;
+}
