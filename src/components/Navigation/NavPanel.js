@@ -16,7 +16,16 @@ function NavPanel() {
           </Link>
           <span className={style.label}>Profile</span>
         </li>
-        {/* <li>Profile</li> */}
+
+        <li>
+          <Link to={`/friends-list`}>
+            <span className={`material-symbols-outlined ${style.icon}`}>
+              supervised_user_circle
+            </span>
+          </Link>
+          <span className={style.label}>Friends</span>
+        </li>
+
         <li>
           <Link to="/explore">
             <span className={`material-symbols-outlined ${style.icon}`}>
@@ -25,14 +34,14 @@ function NavPanel() {
           </Link>
           <span className={style.label}>Explore</span>
         </li>
-        {/* <li>Explore</li> */}
+
         <li>
           <span className={`material-symbols-outlined ${style.icon}`}>
             circle_notifications
           </span>
           <span className={style.label}>Notifications</span>
         </li>
-        {/* <li>Notifications</li> */}
+
         <li>
           <Link to="/liked">
             <span className={`material-symbols-outlined ${style.icon}`}>
@@ -41,14 +50,13 @@ function NavPanel() {
           </Link>
           <span className={style.label}>Liked</span>
         </li>
-        {/* <li>Saved Posts</li> */}
+
         <li>
           <span className={`material-symbols-outlined ${style.icon}`}>
             settings
           </span>
           <span className={style.label}>Settings</span>
         </li>
-        {/* <li>Settings</li> */}
       </ul>
     </nav>
   );

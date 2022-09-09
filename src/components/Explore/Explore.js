@@ -12,7 +12,6 @@ function Explore() {
   const { posts, tags } = useSelector((state) => state.posts);
   const { isLoading, getPosts } = usePost();
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     getPosts();
