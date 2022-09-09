@@ -76,7 +76,7 @@ function useUser() {
 
       if (!res.ok) throw new Error("Error sending to database");
 
-      dispatch(userActions.login({ uid: id, username, email }));
+      dispatch(userActions.login({ uid: id, username, email, friends: [] }));
     } catch (error) {
       setError(error.message);
     }
@@ -85,9 +85,28 @@ function useUser() {
 
   const getUser = async function (id) {
     const user = await findUser(id);
-    const { uid, email, username } = user;
+    const { uid, email, username, friends } = user;
 
-    dispatch(userActions.login({ uid, email, username }));
+    dispatch(userActions.login({ uid, email, username, friends }));
+  };
+
+  const modifyFriends = async function (newFriends, userId) {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${url}users/${userId}/.json`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ friends: newFriends }),
+      });
+
+      if (!res.ok) throw new Error("Cannot set new friends 🔥");
+
+      dispatch(userActions.updateFriendsList(newFriends));
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+    setIsLoading(false);
   };
 
   return {
@@ -98,6 +117,7 @@ function useUser() {
     isLoading,
     error,
     isUsernameOccupied,
+    modifyFriends,
   };
 }
 

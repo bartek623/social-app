@@ -1,28 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initState = {
+  uid: "",
+  email: "",
+  username: "",
+  token: "",
+  friends: [],
+};
+
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    uid: "",
-    email: "",
-    username: "",
-    token: "",
-  },
+  initialState: initState,
   reducers: {
     login: (state, action) => {
-      state.uid = action.payload.uid;
-      state.email = action.payload.email;
-      state.username = action.payload.username;
+      const { uid, email, username, friends } = action.payload;
+      state.uid = uid;
+      state.email = email;
+      state.username = username;
+      state.friends = friends;
+      // state = { ...state, uid, email, username, friends };
     },
     logout: (state) => {
       state.uid = "";
       state.email = "";
       state.username = "";
       state.token = "";
+      state.friends = [];
       localStorage.removeItem("tokenInfo");
     },
     setToken: (state, action) => {
       state.token = action.payload.token;
+    },
+    updateFriendsList: (state, action) => {
+      state.friends = action.payload;
     },
   },
 });

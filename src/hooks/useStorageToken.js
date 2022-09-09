@@ -20,8 +20,8 @@ function useStorageToken() {
 
       if (token) {
         const login = function (userData) {
-          const { id, email, username } = userData;
-          dispatch(userActions.login({ uid: id, email, username }));
+          const { id, email, username, friends } = userData;
+          dispatch(userActions.login({ uid: id, email, username, friends }));
         };
 
         //get user data
