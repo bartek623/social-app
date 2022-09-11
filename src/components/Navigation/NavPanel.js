@@ -36,9 +36,11 @@ function NavPanel() {
         </li>
 
         <li>
-          <span className={`material-symbols-outlined ${style.icon}`}>
-            circle_notifications
-          </span>
+          <Link to="/notifications">
+            <span className={`material-symbols-outlined ${style.icon}`}>
+              circle_notifications
+            </span>
+          </Link>
           <span className={style.label}>Notifications</span>
         </li>
 

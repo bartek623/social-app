@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import usePost from "../../hooks/usePost";
+import useUser from "../../hooks/useUser";
 import themeStyle from "../UI/theme.module.css";
 import style from "./PostControl.module.css";
 
 function PostControl(props) {
   const user = useSelector((state) => state.user);
   const { likePost } = usePost();
+  const { pushNotification } = useUser();
   const [likes, setLikes] = useState(props.likes ? props.likes : []);
 
   const likesAmount = likes?.length || "0";
@@ -16,7 +18,13 @@ function PostControl(props) {
   const likeHandler = function () {
     let newLikes;
 
-    if (!isLiked) newLikes = [...likes, user.username];
+    if (!isLiked) {
+      newLikes = [...likes, user.username];
+
+      // Push new notifications to author of post
+      const notification = `${user.username} liked your post!`;
+      pushNotification(notification, props.authorId);
+    }
 
     if (isLiked) newLikes = likes.filter((liked) => liked !== user.username);
 

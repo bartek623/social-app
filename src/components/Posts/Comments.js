@@ -58,6 +58,7 @@ function Comments(props) {
           <CreateComment
             comments={comments}
             postId={props.postId}
+            authorId={props.authorId}
             updateComments={props.updateComments}
           />
         </li>

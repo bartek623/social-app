@@ -5,7 +5,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import style from "./FriendControls.module.css";
 
 function FriendControls(props) {
-  const { modifyFriends, isLoading } = useUser();
+  const { modifyFriends, isLoading, pushNotification } = useUser();
   const user = useSelector((state) => state.user);
   const userInfo = {
     username: props.userProfile.username,
@@ -27,6 +27,9 @@ function FriendControls(props) {
     }
     if (!isInFriendsList) {
       friendsUpdated = [userInfo, ...currFriends];
+
+      const notification = `${user.username} added you as friend!`;
+      pushNotification(notification, userInfo.id);
     }
 
     // console.log(friendsUpdated);

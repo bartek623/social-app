@@ -6,6 +6,7 @@ const initState = {
   username: "",
   token: "",
   friends: [],
+  notifications: [],
 };
 
 const userSlice = createSlice({
@@ -13,11 +14,12 @@ const userSlice = createSlice({
   initialState: initState,
   reducers: {
     login: (state, action) => {
-      const { uid, email, username, friends } = action.payload;
+      const { uid, email, username, friends, notifications } = action.payload;
       state.uid = uid;
       state.email = email;
       state.username = username;
       state.friends = friends;
+      state.notifications = Object.values(notifications).reverse();
       // state = { ...state, uid, email, username, friends };
     },
     logout: (state) => {
@@ -26,6 +28,7 @@ const userSlice = createSlice({
       state.username = "";
       state.token = "";
       state.friends = [];
+      state.notifications = [];
       localStorage.removeItem("tokenInfo");
     },
     setToken: (state, action) => {
