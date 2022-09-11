@@ -7,7 +7,7 @@ import style from "./Comments.module.css";
 import themeStyle from "../UI/theme.module.css";
 
 function Comments(props) {
-  const { comments } = props;
+  const { comments, edit } = props;
   const user = useSelector((state) => state.user);
   const { setComment } = usePost();
 
@@ -53,13 +53,14 @@ function Comments(props) {
 
   return (
     <ul className={`${style.comments} ${themeStyle.container}`}>
-      {props.edit && (
+      {edit && (
         <li>
           <CreateComment
             comments={comments}
             postId={props.postId}
             authorId={props.authorId}
             updateComments={props.updateComments}
+            hideEdit={props.hideEdit}
           />
         </li>
       )}

@@ -25,6 +25,10 @@ function Post(props) {
     </li>
   ));
 
+  const hideEdit = function () {
+    setEditComments(false);
+  };
+
   const commentsHandler = function (edit = false) {
     if (!edit) {
       setShowComments((prevState) => !prevState);
@@ -95,6 +99,7 @@ function Post(props) {
               postId={props.post.postId}
               authorId={props.post.authorId}
               edit={editComments}
+              hideEdit={hideEdit}
               comments={comments || []}
               updateComments={setComments}
             />

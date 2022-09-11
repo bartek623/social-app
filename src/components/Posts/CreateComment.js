@@ -21,6 +21,7 @@ function CreateComment(props) {
       content: contentInputRef.current.value,
     };
 
+    props.hideEdit();
     const newComments = [comment, ...props.comments];
 
     props.updateComments(newComments);
