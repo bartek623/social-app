@@ -22,8 +22,10 @@ function PostControl(props) {
       newLikes = [...likes, user.username];
 
       // Push new notifications to author of post
-      const notification = `${user.username} liked your post!`;
-      pushNotification(notification, props.authorId);
+      if (user.uid !== props.authorId) {
+        const notification = `${user.username} liked your post!`;
+        pushNotification(notification, props.authorId);
+      }
     }
 
     if (isLiked) newLikes = likes.filter((liked) => liked !== user.username);
