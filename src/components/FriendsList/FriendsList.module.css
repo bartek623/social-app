@@ -1,30 +1,3 @@
-.heading {
-  width: 100%;
-  font-size: 3.6rem;
-  margin-bottom: 2.4rem;
-
-  background: transparent;
-}
-
-.no-friends {
-  font-size: 2.4rem;
-  background: transparent;
-}
-
-.friends-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  list-style: none;
-  width: 100%;
-  background: transparent;
-}
-
-.friends-list li {
-  background: transparent;
-}
-
 .friends-list__friend {
   display: flex;
   align-items: center;

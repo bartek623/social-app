@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import FriendControls from "./FriendControls";
 import Card from "../UI/Card";
-import Container from "../UI/Container";
+import PageList from "../UI/PageList";
 import style from "./FriendsList.module.css";
-import { Link } from "react-router-dom";
 
 function FriendsList() {
   const friends = useSelector((state) => state.user).friends || [];
@@ -20,18 +20,16 @@ function FriendsList() {
     </li>
   ));
 
+  const heading = "Friends";
+  const noFriends = "You have not added any friends yet!";
+
   return (
-    <Container>
-      <h1 className={style.heading}>Your friends list</h1>
-      {friends.length > 0 && (
-        <ul className={style["friends-list"]}>{friendsItems}</ul>
-      )}
-      {friends.length === 0 && (
-        <p className={style["no-friends"]}>
-          You have not added any friends yet!
-        </p>
-      )}
-    </Container>
+    <PageList
+      heading={heading}
+      messageOnEmptyList={noFriends}
+      listItems={friendsItems}
+      isEmpty={friends.length < 1}
+    />
   );
 }
 

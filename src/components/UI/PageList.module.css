@@ -6,12 +6,12 @@
   background-color: transparent;
 }
 
-.no-notifications {
+.no-lists-items {
   font-size: 2.4rem;
   background-color: transparent;
 }
 
-.notifications-list {
+.list {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -21,7 +21,7 @@
   background: transparent;
 }
 
-.notifications-list__notification {
+.list li {
   background: transparent;
   font-size: 1.8rem;
 }

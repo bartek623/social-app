@@ -1,10 +1,10 @@
-import style from "./LikedPosts.module.css";
-import PostsList from "../Posts/PostsList";
-import Container from "../UI/Container";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+
+import PostsList from "../Posts/PostsList";
 import LoadingBars from "../UI/LoadingBars";
 import usePost from "../../hooks/usePost";
-import { useEffect } from "react";
+import PageList from "../UI/PageList";
 
 function LikedPosts() {
   const user = useSelector((state) => state.user);
@@ -21,14 +21,16 @@ function LikedPosts() {
 
   if (isLoading) return <LoadingBars />;
 
+  const heading = "Liked posts";
+  const noLikedPosts = "You have not liked any posts yet!";
+
   return (
-    <Container>
-      <h1 className={style.heading}>Liked posts</h1>
-      {likedPosts.length > 0 && <PostsList posts={likedPosts} />}
-      {likedPosts.length === 0 && (
-        <p className={style["no-posts"]}>You have not liked any posts yet!</p>
-      )}
-    </Container>
+    <PageList
+      heading={heading}
+      messageOnEmptyList={noLikedPosts}
+      listItems={<PostsList posts={likedPosts} />}
+      isEmpty={likedPosts.length < 1}
+    />
   );
 }
 

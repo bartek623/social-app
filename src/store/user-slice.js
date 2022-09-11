@@ -19,7 +19,9 @@ const userSlice = createSlice({
       state.email = email;
       state.username = username;
       state.friends = friends;
-      state.notifications = Object.values(notifications).reverse();
+      state.notifications = notifications
+        ? Object.values(notifications).reverse()
+        : [];
       // state = { ...state, uid, email, username, friends };
     },
     logout: (state) => {
