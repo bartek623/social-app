@@ -76,7 +76,15 @@ function useUser() {
 
       if (!res.ok) throw new Error("Error sending to database");
 
-      dispatch(userActions.login({ uid: id, username, email, friends: [] }));
+      dispatch(
+        userActions.login({
+          uid: id,
+          username,
+          email,
+          friends: [],
+          notifications: [],
+        })
+      );
     } catch (error) {
       setError(error.message);
     }
@@ -85,9 +93,11 @@ function useUser() {
 
   const getUser = async function (id) {
     const user = await findUser(id);
-    const { uid, email, username, friends } = user;
+    const { uid, email, username, friends, notifications } = user;
 
-    dispatch(userActions.login({ uid, email, username, friends }));
+    dispatch(
+      userActions.login({ uid, email, username, friends, notifications })
+    );
   };
 
   const modifyFriends = async function (newFriends, userId) {
@@ -109,6 +119,23 @@ function useUser() {
     setIsLoading(false);
   };
 
+  const pushNotification = async function (notification, userId) {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${url}users/${userId}/notifications.json`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notification }),
+      });
+
+      if (!res.ok) throw new Error("Cannot push new notification 🔥");
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+    setIsLoading(false);
+  };
+
   return {
     setUser,
     getUser,
@@ -118,6 +145,7 @@ function useUser() {
     error,
     isUsernameOccupied,
     modifyFriends,
+    pushNotification,
   };
 }
 

@@ -83,6 +83,7 @@ function Post(props) {
           <p className={style.content}>{props.post.content}</p>
           <PostControl
             postId={props.post.postId}
+            authorId={props.post.authorId}
             likes={props.post.likedBy}
             comments={comments}
             showComments={commentsHandler}
@@ -92,6 +93,7 @@ function Post(props) {
           <div className={style.comments}>
             <Comments
               postId={props.post.postId}
+              authorId={props.post.authorId}
               edit={editComments}
               comments={comments || []}
               updateComments={setComments}
