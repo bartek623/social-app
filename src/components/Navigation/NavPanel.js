@@ -1,9 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { uiActions } from "../../store/ui-slice";
 import style from "./NavPanel.module.css";
 
 function NavPanel() {
   const user = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.ui);
+  const dispatch = useDispatch();
+
+  const switchThemeHandler = function () {
+    dispatch(uiActions.switchTheme());
+  };
 
   return (
     <nav className={style.nav}>
@@ -54,10 +62,19 @@ function NavPanel() {
         </li>
 
         <li>
-          <span className={`material-symbols-outlined ${style.icon}`}>
-            settings
-          </span>
-          <span className={style.label}>Settings</span>
+          <button className={style["theme-btn"]} onClick={switchThemeHandler}>
+            {theme === "light" && (
+              <span className={`material-symbols-outlined ${style.icon}`}>
+                dark_mode
+              </span>
+            )}
+            {theme === "dark" && (
+              <span className={`material-symbols-outlined ${style.icon}`}>
+                light_mode
+              </span>
+            )}
+          </button>
+          <span className={style.label}>Theme</span>
         </li>
       </ul>
     </nav>

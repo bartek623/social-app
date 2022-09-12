@@ -20,13 +20,13 @@
 .comment a,
 .comment a:visited {
   text-decoration: none;
-  transition: color 0.2s;
 }
 
 .comment a:hover,
 .comment a:active {
   color: #777;
   cursor: pointer;
+  transition: color 0.2s;
 }
 
 .comment p {
