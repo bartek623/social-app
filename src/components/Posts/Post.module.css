@@ -20,14 +20,13 @@
   text-decoration: none;
   font-weight: 700;
   letter-spacing: -0.3px;
-
-  transition: color 0.2s;
 }
 
 .post-header a:hover,
 .post-header a:active {
   cursor: pointer;
   color: #777;
+  transition: color 0.2s;
 }
 
 .date {

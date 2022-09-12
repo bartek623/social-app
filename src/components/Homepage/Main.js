@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import NavPanel from "../Navigation/NavPanel";
 import Content from "./Content";
@@ -16,6 +16,7 @@ function Main() {
     <main className={style.main}>
       <NavPanel />
       <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Content />} />
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/friends-list" element={<FriendsList />} />
