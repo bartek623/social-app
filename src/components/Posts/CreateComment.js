@@ -18,6 +18,7 @@ function CreateComment(props) {
 
     const comment = {
       author: user.username,
+      authorId: user.uid,
       content: contentInputRef.current.value,
     };
 

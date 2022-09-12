@@ -5,6 +5,7 @@ import CreateComment from "./CreateComment";
 import usePost from "../../hooks/usePost";
 import style from "./Comments.module.css";
 import themeStyle from "../UI/theme.module.css";
+import { Link } from "react-router-dom";
 
 function Comments(props) {
   const { comments, edit } = props;
@@ -34,7 +35,9 @@ function Comments(props) {
       <li key={"c" + i} className={`${style.comment} ${themeStyle.container}`}>
         <Card>
           <header className={style["comment-header"]}>
-            <h5>{comment.author}</h5>
+            <h5>
+              <Link to={`/profile/${comment.authorId}`}>{comment.author}</Link>
+            </h5>
             {user.username === comment.author && (
               <button
                 className="material-symbols-outlined"
