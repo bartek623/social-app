@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import useAuth from "./useAuth";
 import { userActions } from "../store/user-slice";
 import { useCallback } from "react";
+import { uiActions } from "../store/ui-slice";
 
 function useStorageToken() {
   const dispatch = useDispatch();
@@ -20,7 +21,15 @@ function useStorageToken() {
 
       if (token) {
         const login = function (userData) {
-          const { id, email, username, friends, notifications } = userData;
+          const {
+            id,
+            email,
+            username,
+            friends,
+            notifications,
+            preferredTheme,
+          } = userData;
+
           dispatch(
             userActions.login({
               uid: id,
@@ -30,6 +39,7 @@ function useStorageToken() {
               notifications,
             })
           );
+          dispatch(uiActions.setTheme(preferredTheme));
         };
 
         //get user data

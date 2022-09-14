@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 import { uiActions } from "../../store/ui-slice";
 import style from "./NavPanel.module.css";
@@ -7,9 +8,11 @@ import style from "./NavPanel.module.css";
 function NavPanel() {
   const user = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.ui);
+  const { setTheme } = useUser();
   const dispatch = useDispatch();
 
   const switchThemeHandler = function () {
+    setTheme(user.uid, theme === "light" ? "dark" : "light");
     dispatch(uiActions.switchTheme());
   };
 

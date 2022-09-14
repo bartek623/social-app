@@ -11,6 +11,22 @@ function useUser() {
   const url =
     "https://social-app-32f5b-default-rtdb.europe-west1.firebasedatabase.app/";
 
+  // set preferred theme
+  const setTheme = async function (userId, theme) {
+    try {
+      const res = await fetch(`${url}users/${userId}/.json`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ preferredTheme: theme }),
+      });
+
+      if (!res.ok) throw new Error("Cannot update preferred theme 🔥");
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    }
+  };
+
   // Get all users list from DB
   const getUsersList = async function () {
     // First fetch to check how many users already are registered
@@ -146,6 +162,7 @@ function useUser() {
     isUsernameOccupied,
     modifyFriends,
     pushNotification,
+    setTheme,
   };
 }
 
