@@ -10,24 +10,30 @@ const postsSlice = createSlice({
   reducers: {
     loadPosts: (state, action) => {
       let posts;
+      // If fetch all posts replace olds, if add new, add it to others
       if (action.payload.replace) {
         posts = action.payload.posts;
       } else {
         posts = [...action.payload.posts, ...state.posts];
       }
+
+      // get all tags together from old posts and from the newest posts
       const tags = posts.reduce(
         (accTags, post) => (accTags = [...accTags, ...(post.tags || [])]),
         []
       );
+      // Remove duplicated tags
       const tagsUnique = new Set(tags);
 
       state.posts = posts;
       state.tags = [...tagsUnique];
     },
     deletePost: (state, action) => {
-      state.posts = state.posts.filter(
+      // Filter posts to get new list without removed post
+      const postsFiltered = state.posts.filter(
         (post) => post.postId !== action.payload
       );
+      state.posts = postsFiltered;
     },
     sortPosts: (state, action) => {
       state.postsSort = action.payload;

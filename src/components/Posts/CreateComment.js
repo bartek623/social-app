@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 import usePost from "../../hooks/usePost";
@@ -12,6 +12,11 @@ function CreateComment(props) {
   const { setComment } = usePost();
   const { pushNotification } = useUser();
   const contentInputRef = useRef();
+
+  useEffect(() => {
+    // When comment textarea is open, set focus on it
+    contentInputRef.current.focus();
+  }, []);
 
   const submitHandler = function (e) {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -8,14 +8,21 @@ import Comments from "./Comments";
 import Card from "../UI/Card";
 
 function Post(props) {
+  const { comments: propsComments } = props.post;
   const [showComments, setShowComments] = useState(false);
   const [editComments, setEditComments] = useState(false);
-  const [comments, setComments] = useState(props.post.comments);
+  const [comments, setComments] = useState([]);
   const user = useSelector((state) => state.user);
   const isUserAuthor = user.username === props.post.author;
   const isFriend = user.friends?.some(
     (friend) => friend.username === props.post.author
   );
+
+  // It fixes problem with not updating components after removing other post
+  useEffect(() => {
+    setComments(propsComments);
+    setShowComments(false);
+  }, [propsComments]);
 
   const tags = props.post.tags || [];
 
