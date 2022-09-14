@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+
 import style from "./Modal.module.css";
 
 const getTags = function (text) {
@@ -7,12 +8,19 @@ const getTags = function (text) {
   const tags = textWords
     .filter((word) => word[0] === "#" && word.trim().length > 1)
     .map((tag) => tag.trim().slice(1));
-  return tags;
+
+  const tagsWithoutDuplications = new Set(tags);
+  return [...tagsWithoutDuplications];
 };
 
 function Modal(props) {
   const user = useSelector((state) => state.user);
   const contentInputRef = useRef();
+
+  useEffect(() => {
+    // When modal is open set focus to textarea
+    contentInputRef.current.focus();
+  }, []);
 
   const submitHandler = function (e) {
     e.preventDefault();

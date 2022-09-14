@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 import usePost from "../../hooks/usePost";
 import useUser from "../../hooks/useUser";
 import themeStyle from "../UI/theme.module.css";
 import style from "./PostControl.module.css";
 
 function PostControl(props) {
+  const { likes: propLikes } = props;
   const user = useSelector((state) => state.user);
   const { likePost } = usePost();
   const { pushNotification } = useUser();
-  const [likes, setLikes] = useState(props.likes ? props.likes : []);
+  const [likes, setLikes] = useState([]);
+
+  //It fixes problem with updating likes counter after removing post
+  useEffect(() => {
+    setLikes(propLikes || []);
+  }, [propLikes]);
 
   const likesAmount = likes?.length || "0";
   const isLiked = likes?.includes(user.username) || false;
