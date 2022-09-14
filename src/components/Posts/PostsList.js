@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import usePost from "../../hooks/usePost";
 import Post from "./Post";
 import themeStyle from "../UI/theme.module.css";

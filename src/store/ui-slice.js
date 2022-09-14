@@ -9,6 +9,9 @@ const uiSlice = createSlice({
     switchTheme: (state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
     },
+    setTheme: (state, action) => {
+      state.theme = action.payload || "light";
+    },
   },
 });
 
