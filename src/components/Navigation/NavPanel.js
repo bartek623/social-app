@@ -20,6 +20,15 @@ function NavPanel() {
     <nav className={style.nav}>
       <ul>
         <li>
+          <Link to={`/home`}>
+            <span className={`material-symbols-outlined ${style.icon}`}>
+              home
+            </span>
+          </Link>
+          <span className={style.label}>Homepage</span>
+        </li>
+
+        <li>
           <Link to={`/profile/${user.uid}`}>
             <span className={`material-symbols-outlined ${style.icon}`}>
               account_circle
