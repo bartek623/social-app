@@ -51,7 +51,9 @@
 
   font-size: 1.4rem;
   font-weight: 500;
-  background: transparent;
+  padding: 2px 4px 2px 0;
+  border-top-right-radius: 10rem;
+  border-bottom-right-radius: 10rem;
 
   transition: opacity 0.2s;
 }
