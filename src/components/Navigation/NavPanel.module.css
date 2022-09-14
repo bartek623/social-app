@@ -66,3 +66,26 @@ li:hover .label {
   border: none;
   color: inherit;
 }
+
+@media (max-width: 28em) {
+  .nav {
+    width: 100%;
+    height: auto;
+  }
+
+  .nav ul {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0.4rem;
+    width: 100%;
+  }
+
+  .nav li {
+    justify-content: center;
+  }
+
+  .label {
+    display: none;
+  }
+}
