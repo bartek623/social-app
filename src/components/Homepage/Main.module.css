@@ -7,3 +7,9 @@
   height: 100%;
   overflow: hidden;
 }
+
+@media (max-width: 28em) {
+  .main {
+    flex-direction: column;
+  }
+}

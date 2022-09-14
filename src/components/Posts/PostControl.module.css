@@ -1,9 +1,13 @@
 .control {
   border-top: 1px solid rgba(119, 119, 119, 0.2);
   padding: 0.8rem;
-  display: flex;
+
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .btns {
@@ -53,4 +57,19 @@
   align-items: center;
   gap: 4px;
   font-size: 1.5rem;
+}
+
+@media (max-width: 24em) {
+  .control {
+    grid-template-columns: 1fr;
+    row-gap: 0.8rem;
+  }
+
+  .reactions {
+    justify-content: space-around;
+  }
+
+  .btns {
+    justify-content: space-around;
+  }
 }
