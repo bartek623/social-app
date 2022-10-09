@@ -13,12 +13,12 @@ function Notifications() {
   ));
 
   const heading = "Notifications";
-  const noNotifications = "You have not any notifications yet!";
+  const noNotificationsMessage = "You don't have any notifications yet!";
 
   return (
     <PageList
       heading={heading}
-      messageOnEmptyList={noNotifications}
+      messageOnEmptyList={noNotificationsMessage}
       listItems={notificationsItems}
       isEmpty={notifications.length < 1}
     />
