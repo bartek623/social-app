@@ -3,4 +3,22 @@
   width: 100%;
 
   background-color: transparent;
+
+  margin-bottom: 1.2rem;
+}
+
+.show-more-btn {
+  font-family: inherit;
+  border: none;
+  background: none;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+  transition: all 0.2s;
+}
+
+.show-more-btn:hover {
+  cursor: pointer;
+  scale: 1.15;
 }
