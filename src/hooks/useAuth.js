@@ -4,8 +4,13 @@ import { userActions } from "../store/user-slice";
 import useUser from "./useUser";
 
 function useAuth() {
-  const { setUser, getUser, userError, isUsernameOccupied, findUser } =
-    useUser();
+  const {
+    setUser,
+    getUser,
+    error: userError,
+    isUsernameOccupied,
+    findUser,
+  } = useUser();
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -26,6 +31,9 @@ function useAuth() {
       //Checking if username is avalaible
       const isAvalaible = !(await isUsernameOccupied(username));
 
+      console.log(isAvalaible);
+      if (isAvalaible === "error") throw new Error("error");
+
       if (!isAvalaible) throw new Error("Username already taken!");
 
       const res = await fetch(url, {
@@ -36,6 +44,7 @@ function useAuth() {
 
       if (!res.ok && login) throw new Error("Invalid e-mail or password!");
       if (!res.ok && !login) throw new Error("Email already taken!");
+      if (!res.ok) throw new Error("Something went wrong 💥");
 
       const data = await res.json();
 

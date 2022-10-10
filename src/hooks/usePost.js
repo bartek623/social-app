@@ -39,7 +39,6 @@ function usePost() {
         console.error(error);
         setError(error);
       }
-      console.log("posts fetched");
       setIsLoading(false);
     },
     [dispatch]

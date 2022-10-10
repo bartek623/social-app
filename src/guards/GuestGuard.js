@@ -18,7 +18,6 @@ function GuestGuard(props) {
   if (isLoading) return <LoadingSpinner />;
 
   if (!user.token) {
-    console.log("You have to login first");
     return <Navigate to="/login" />;
   }
 
