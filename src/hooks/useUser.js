@@ -42,6 +42,7 @@ function useUser() {
       if (!users) return [];
       return Object.values(users);
     } catch (error) {
+      console.error(error);
       setIsLoading(false);
       setError(error.message);
     }
@@ -73,6 +74,8 @@ function useUser() {
   //Is username avalaible
   const isUsernameOccupied = async function (username) {
     const users = await getUsersList();
+
+    if (!users) throw new Error("Something went wrong 💥 Try again later");
 
     const userExists = !!users.find((user) => user.username === username);
 

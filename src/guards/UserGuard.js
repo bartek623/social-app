@@ -18,7 +18,6 @@ function UserGuard(props) {
   if (isLoading) return <LoadingSpinner />;
 
   if (user.token) {
-    console.log("You are already logged in");
     return <Navigate to="/home" />;
   }
 
