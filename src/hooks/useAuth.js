@@ -31,7 +31,6 @@ function useAuth() {
       //Checking if username is avalaible
       const isAvalaible = !(await isUsernameOccupied(username));
 
-      console.log(isAvalaible);
       if (isAvalaible === "error") throw new Error("error");
 
       if (!isAvalaible) throw new Error("Username already taken!");
