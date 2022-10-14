@@ -16,7 +16,7 @@ There are few subpages like:
 ## Demo
 
 ### Sample account
-- mail: randomuser@mail.com
+- e-mail: randomuser@mail.com
 - username: RandomUser
 - password: RandomUser
 - or create new one with registration panel.
