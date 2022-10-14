@@ -16,3 +16,9 @@ There are few subpages like:
 ## Demo
 
 [![Social App screen](./public//SocialAppViewScreen.png)](https://social-app-623.netlify.app/)
+
+Sample account
+mail: randomuser@mail.com
+username: RandomUser
+password: RandomUser
+or create new one with registration panel.
