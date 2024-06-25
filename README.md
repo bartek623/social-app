@@ -21,4 +21,5 @@ There are few subpages like:
 - password: RandomUser
 - or create new one with registration panel.
 
+(Click the image below to redirect to the hosted app - BackEnd is off)
 [![Social App screen](./public//SocialAppViewScreen.png)](https://social-app-623.netlify.app/)
